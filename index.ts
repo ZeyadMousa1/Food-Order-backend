@@ -1,11 +1,15 @@
 import express from 'express'
+import bodyParser from 'body-parser';
+
+import {AdminRouter, VandorRouter} from './routes'
 
 const app = express();
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
-app.use('/', (req, res) => {
-    res.json('Hello from food orfer backend!!')
-})
+app.use('/admin', AdminRouter)
+app.use('/vandor', VandorRouter)
 
 
 app.listen(9000, () => {
